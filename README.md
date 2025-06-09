@@ -8,7 +8,7 @@
 
 View Engine replaced with Ivy
 
-All libraries were updated to the latest versions
+All libraries updated to the latest versions
 
 Several code changes to bring the latest functionality and compatibility
 
