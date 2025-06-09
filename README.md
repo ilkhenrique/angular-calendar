@@ -2,11 +2,9 @@
 
 <h2 align="center">Clone of  Matt Lewis Angular 15 Calendar Upgraded to Angular 19 </h2>
 
-<h2 align="center">About</h2>
+<h2 align="center">Changes</h2>
 
-<div align="center">
-  
-Changes:
+<div align="left">
 
 View Engine replaced with Ivy
 
