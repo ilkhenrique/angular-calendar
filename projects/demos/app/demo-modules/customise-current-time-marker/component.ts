@@ -1,11 +1,20 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { getHours } from 'date-fns';
+import { CalendarModule } from 'angular-calendar';
 
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './template.html',
   styleUrls: ['./styles.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    CalendarModule
+  ]
 })
 export class DemoComponent {
   viewDate = new Date();

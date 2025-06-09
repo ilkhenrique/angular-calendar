@@ -19,8 +19,7 @@ registerLocaleData(localeFr);
     }),
     DemoUtilsModule,
     RouterModule.forChild([{ path: '', component: DemoComponent }]),
-  ],
-  declarations: [DemoComponent],
-  exports: [DemoComponent],
+    DemoComponent
+  ]
 })
 export class DemoModule {}

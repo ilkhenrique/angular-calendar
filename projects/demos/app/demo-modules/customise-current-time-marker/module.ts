@@ -17,8 +17,7 @@ import { FormsModule } from '@angular/forms';
     DemoUtilsModule,
     RouterModule.forChild([{ path: '', component: DemoComponent }]),
     FormsModule,
-  ],
-  declarations: [DemoComponent],
-  exports: [DemoComponent],
+    DemoComponent
+  ]
 })
 export class DemoModule {}

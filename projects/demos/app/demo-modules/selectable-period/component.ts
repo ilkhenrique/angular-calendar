@@ -3,18 +3,35 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarEvent,
   CalendarMonthViewDay,
   CalendarView,
   CalendarWeekViewBeforeRenderEvent,
+  CalendarModule,
+  DateAdapter
 } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { WeekViewHour, WeekViewHourColumn } from 'calendar-utils';
+import { DemoUtilsModule } from '../demo-utils/module';
 
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ],
+  providers: [
+    {
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }
+  ],
   // don't do this in your app, its only so the styles get applied globally
   styles: [
     `

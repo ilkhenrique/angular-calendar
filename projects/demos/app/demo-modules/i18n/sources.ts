@@ -1,30 +1,124 @@
+// Import the component and module files
+import * as component from './component';
+import * as moduleFile from './module';
+
+// Create a function to convert the imported module to a string
+function moduleToString(mod: any): string {
+  return mod.toString();
+}
+
+// HTML content as a string
+const templateHtml = `<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+      >
+        Previous
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Today
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>
+      {{ viewDate | calendarDate:(view + 'ViewTitle'):locale:weekStartsOn }}
+    </h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Month
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Week
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Day
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [locale]="locale"
+    [weekStartsOn]="weekStartsOn"
+    [weekendDays]="weekendDays"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [locale]="locale"
+    [weekStartsOn]="weekStartsOn"
+    [weekendDays]="weekendDays"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+    [locale]="locale"
+  >
+  </mwl-calendar-day-view>
+</div>
+`;
+
+// Use static content for the sources
 export const sources = [
   {
     filename: 'component.ts',
     contents: {
-      raw: require('!!raw-loader!./component'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./component'),
-    },
-  },
-  {
-    filename: 'custom-date-formatter.provider.ts',
-    contents: {
-      raw: require('!!raw-loader!./custom-date-formatter.provider'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./custom-date-formatter.provider'),
+      raw: { default: moduleToString(component) },
+      highlighted: { default: moduleToString(component) },
     },
   },
   {
     filename: 'template.html',
     contents: {
-      raw: require('!!raw-loader!./template.html'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=xml!./template.html'),
+      raw: { default: templateHtml },
+      highlighted: { default: templateHtml },
     },
   },
   {
     filename: 'module.ts',
     contents: {
-      raw: require('!!raw-loader!./module'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./module'),
+      raw: { default: moduleToString(moduleFile) },
+      highlighted: { default: moduleToString(moduleFile) },
     },
   },
 ];

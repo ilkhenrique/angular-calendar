@@ -4,18 +4,19 @@ import {
   EventEmitter,
   ElementRef,
   NgZone,
-  Renderer2,
   OnInit,
   OnDestroy,
+  Renderer2,
 } from '@angular/core';
 
 @Directive({
   selector: '[mwlKeydownEnter]',
+  standalone: true,
 })
 export class KeydownEnterDirective implements OnInit, OnDestroy {
   @Output('mwlKeydownEnter') keydown = new EventEmitter<KeyboardEvent>(); // eslint-disable-line
 
-  private keydownListener: VoidFunction | null = null;
+  private keydownListener: () => void;
 
   constructor(
     private host: ElementRef<HTMLElement>,
@@ -24,20 +25,16 @@ export class KeydownEnterDirective implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // Using Renderer2 for DOM manipulation is the recommended approach in Ivy
     this.ngZone.runOutsideAngular(() => {
       this.keydownListener = this.renderer.listen(
         this.host.nativeElement,
         'keydown',
         (event: KeyboardEvent) => {
-          if (
-            event.keyCode === 13 ||
-            event.which === 13 ||
-            event.key === 'Enter'
-          ) {
-            event.preventDefault();
-            event.stopPropagation();
-
+          if (event.key === 'Enter') {
             this.ngZone.run(() => {
+              event.preventDefault();
+              event.stopPropagation();
               this.keydown.emit(event);
             });
           }
@@ -47,7 +44,7 @@ export class KeydownEnterDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.keydownListener !== null) {
+    if (this.keydownListener) {
       this.keydownListener();
       this.keydownListener = null;
     }

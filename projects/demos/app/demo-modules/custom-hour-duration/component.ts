@@ -1,16 +1,23 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { setMinutes, setHours } from 'date-fns';
 import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent,
   CalendarView,
+  CalendarModule,
 } from 'angular-calendar';
 
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule
+  ]
 })
 export class DemoComponent {
   view: CalendarView = CalendarView.Week;

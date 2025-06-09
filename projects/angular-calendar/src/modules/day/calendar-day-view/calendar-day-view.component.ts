@@ -11,6 +11,7 @@ import { CalendarEventTimesChangedEvent } from '../../common/calendar-event-time
 import { PlacementArray } from 'positioning';
 import { CalendarWeekViewBeforeRenderEvent } from '../../week/calendar-week.module';
 import { ResizeCursors } from 'angular-resizable-element';
+import { CalendarWeekViewComponent } from '../../week/calendar-week-view/calendar-week-view.component';
 
 export type CalendarDayViewBeforeRenderEvent =
   CalendarWeekViewBeforeRenderEvent;
@@ -27,6 +28,10 @@ export type CalendarDayViewBeforeRenderEvent =
  */
 @Component({
   selector: 'mwl-calendar-day-view',
+  standalone: true,
+  imports: [
+    CalendarWeekViewComponent
+  ],
   template: `
     <mwl-calendar-week-view
       class="cal-day-view"
@@ -215,7 +220,7 @@ export class CalendarDayViewComponent {
    */
   @Output() hourSegmentClicked = new EventEmitter<{
     date: Date;
-    sourceEvent: MouseEvent;
+    sourceEvent: Event;
   }>();
 
   /**

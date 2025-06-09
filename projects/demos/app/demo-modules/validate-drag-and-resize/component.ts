@@ -3,12 +3,16 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent,
   CalendarView,
+  CalendarModule,
+  DateAdapter
 } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { colors } from '../demo-utils/colors';
 import {
   addDays,
@@ -19,11 +23,24 @@ import {
   subDays,
   subSeconds,
 } from 'date-fns';
+import { DemoUtilsModule } from '../demo-utils/module';
 
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ],
+  providers: [
+    {
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }
+  ],
   styles: [
     `
       .invalid-position .cal-event {

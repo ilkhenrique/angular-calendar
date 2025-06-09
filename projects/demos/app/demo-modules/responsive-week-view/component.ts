@@ -5,8 +5,10 @@ import {
   OnDestroy,
   ChangeDetectorRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { CalendarView } from 'angular-calendar';
+import { CalendarView, CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -14,6 +16,17 @@ import { takeUntil } from 'rxjs/operators';
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule
+  ],
+  providers: [
+    {
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }
+  ],
 })
 export class DemoComponent implements OnInit, OnDestroy {
   view: CalendarView = CalendarView.Week;

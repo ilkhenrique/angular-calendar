@@ -13,6 +13,7 @@ import {
   ElementRef,
   AfterViewInit,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Subject, Subscription } from 'rxjs';
 import {
   WeekDay,
@@ -26,8 +27,8 @@ import {
   WeekViewHour,
   WeekViewAllDayEventRow,
 } from 'calendar-utils';
-import { ResizeEvent } from 'angular-resizable-element';
-import { ResizeCursors } from 'angular-resizable-element';
+import { ResizeEvent, ResizableModule, ResizeCursors } from 'angular-resizable-element';
+import { DragAndDropModule, DragEndEvent, DropEvent, DragMoveEvent, ValidateDrag } from 'angular-draggable-droppable';
 import { CalendarDragHelper } from '../../common/calendar-drag-helper/calendar-drag-helper.provider';
 import { CalendarResizeHelper } from '../../common/calendar-resize-helper/calendar-resize-helper.provider';
 import {
@@ -51,13 +52,11 @@ import {
   trackByWeekTimeEvent,
 } from '../../common/util/util';
 import { DateAdapter } from '../../../date-adapters/date-adapter';
-import {
-  DragEndEvent,
-  DropEvent,
-  DragMoveEvent,
-  ValidateDrag,
-} from 'angular-draggable-droppable';
 import { PlacementArray } from 'positioning';
+import { CalendarWeekViewHeaderComponent } from './calendar-week-view-header/calendar-week-view-header.component';
+import { CalendarWeekViewEventComponent } from './calendar-week-view-event/calendar-week-view-event.component';
+import { CalendarWeekViewHourSegmentComponent } from './calendar-week-view-hour-segment/calendar-week-view-hour-segment.component';
+import { CalendarWeekViewCurrentTimeMarkerComponent } from './calendar-week-view-current-time-marker/calendar-week-view-current-time-marker.component';
 
 export interface WeekViewAllDayEventResize {
   originalOffset: number;
@@ -81,6 +80,16 @@ export interface CalendarWeekViewBeforeRenderEvent extends WeekView {
  */
 @Component({
   selector: 'mwl-calendar-week-view',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ResizableModule,
+    DragAndDropModule,
+    CalendarWeekViewHeaderComponent,
+    CalendarWeekViewEventComponent,
+    CalendarWeekViewHourSegmentComponent,
+    CalendarWeekViewCurrentTimeMarkerComponent
+  ],
   template: `
     <div class="cal-week-view" role="grid">
       <mwl-calendar-week-view-header
@@ -637,7 +646,7 @@ export class CalendarWeekViewComponent
    */
   @Output() hourSegmentClicked = new EventEmitter<{
     date: Date;
-    sourceEvent: MouseEvent;
+    sourceEvent: Event;
   }>();
 
   /**
@@ -837,10 +846,11 @@ export class CalendarWeekViewComponent
    * @hidden
    */
   ngAfterViewInit() {
-    this.rtl =
-      typeof window !== 'undefined' &&
-      getComputedStyle(this.element.nativeElement).direction === 'rtl';
-    this.cdr.detectChanges();
+    if (typeof window !== 'undefined') {
+      const elementRef = this.element;
+      this.rtl = getComputedStyle(elementRef.nativeElement).direction === 'rtl';
+      this.cdr.detectChanges();
+    }
   }
 
   /**

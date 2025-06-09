@@ -3,12 +3,17 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarEvent,
   CalendarMonthViewDay,
   CalendarView,
+  CalendarModule,
+  DateAdapter
 } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { Subject } from 'rxjs';
+import { DemoUtilsModule } from '../demo-utils/module';
 
 const RED_CELL: 'red-cell' = 'red-cell';
 const BLUE_CELL: 'blue-cell' = 'blue-cell';
@@ -18,6 +23,18 @@ const BLUE_CELL: 'blue-cell' = 'blue-cell';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ],
+  providers: [
+    {
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }
+  ],
   styles: [
     `
       .red-cell {

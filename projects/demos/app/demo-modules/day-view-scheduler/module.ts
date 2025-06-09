@@ -16,8 +16,8 @@ import { DayViewSchedulerComponent } from './day-view-scheduler.component';
     }),
     DemoUtilsModule,
     RouterModule.forChild([{ path: '', component: DemoComponent }]),
+    DemoComponent,
+    DayViewSchedulerComponent
   ],
-  declarations: [DemoComponent, DayViewSchedulerComponent],
-  exports: [DemoComponent],
 })
 export class DemoModule {}

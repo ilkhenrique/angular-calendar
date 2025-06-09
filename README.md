@@ -1,4 +1,4 @@
-<h1 align="center">angular 15.0+ calendar</h1>
+<h1 align="center">angular 19.0+ calendar</h1>
 
 <div align="center">
 
@@ -42,7 +42,7 @@ https://mattlewis92.github.io/angular-calendar/
 
 <h2 align="center">About</h2>
 
-A calendar component for angular 15.0+ that can display events on a month, week or day view. The successor of [angular-bootstrap-calendar](https://github.com/mattlewis92/angular-bootstrap-calendar).
+A calendar component for angular 19.0+ that can display events on a month, week or day view. The successor of [angular-bootstrap-calendar](https://github.com/mattlewis92/angular-bootstrap-calendar).
 
 <h2 align="center">Getting started</h2>
 
@@ -111,7 +111,8 @@ Yes.
 
 | Angular major   | Last supported angular-calendar version                                  |
 | --------------- | ------------------------------------------------------------------------ |
-| 15.x and higher | latest version                                                           |
+| 19.x and higher | latest version                                                           |
+| 15.x - 18.x     | [0.31.1](https://github.com/mattlewis92/angular-calendar/tree/v0.31.1)   |
 | 14.x            | [0.30.1](https://github.com/mattlewis92/angular-calendar/tree/v0.30.1)   |
 | 12.x - 13.x     | [0.29.0](https://github.com/mattlewis92/angular-calendar/tree/v0.29.0)   |
 | 6.x - 11.x      | [0.28.28](https://github.com/mattlewis92/angular-calendar/tree/v0.28.28) |
@@ -169,7 +170,7 @@ https://github.com/mattlewis92/angular-bootstrap-calendar
 
 ### Prepare your environment
 
-- Install [Node.js (>=14.19.0 or >=16.9.0)](http://nodejs.org/)
+- Install [Node.js (>=18.13.0)](http://nodejs.org/)
 - Install pnpm: `corepack enable`
 - Install local dev dependencies: `pnpm install` while current directory is this repo
 

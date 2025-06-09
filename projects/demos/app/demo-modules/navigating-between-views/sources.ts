@@ -1,23 +1,73 @@
+// Import the component and module files
+import * as component from './component';
+import * as moduleFile from './module';
+
+// Create a function to convert the imported module to a string
+function moduleToString(mod: any): string {
+  return mod.toString();
+}
+
+// HTML content as a string
+const templateHtml = `<mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
+</mwl-demo-utils-calendar-header>
+
+<div class="alert alert-info">
+  <div [ngSwitch]="view">
+    <span *ngSwitchCase="'month'"
+      >Click on a month label to change the view to that month.</span
+    >
+    <span *ngSwitchCase="'week'"
+      >Click on a day header to change the view to that day.</span
+    >
+    <span *ngSwitchCase="'day'">There is no other view to navigate to.</span>
+  </div>
+</div>
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayClicked)="changeDay($event.day.date)"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="events"
+    (dayHeaderClicked)="changeDay($event.day.date)"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+  >
+  </mwl-calendar-day-view>
+</div>
+`;
+
+// Use static content for the sources
 export const sources = [
   {
     filename: 'component.ts',
     contents: {
-      raw: require('!!raw-loader!./component'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./component'),
+      raw: { default: moduleToString(component) },
+      highlighted: { default: moduleToString(component) },
     },
   },
   {
     filename: 'template.html',
     contents: {
-      raw: require('!!raw-loader!./template.html'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=xml!./template.html'),
+      raw: { default: templateHtml },
+      highlighted: { default: templateHtml },
     },
   },
   {
     filename: 'module.ts',
     contents: {
-      raw: require('!!raw-loader!./module'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./module'),
+      raw: { default: moduleToString(moduleFile) },
+      highlighted: { default: moduleToString(moduleFile) },
     },
   },
 ];

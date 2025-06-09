@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ResizableModule } from 'angular-resizable-element';
 import { DragAndDropModule } from 'angular-draggable-droppable';
 import { CalendarWeekViewComponent } from './calendar-week-view/calendar-week-view.component';
 import { CalendarWeekViewHeaderComponent } from './calendar-week-view/calendar-week-view-header/calendar-week-view-header.component';
 import { CalendarWeekViewEventComponent } from './calendar-week-view/calendar-week-view-event/calendar-week-view-event.component';
-import { CalendarCommonModule } from '../common/calendar-common.module';
 import { CalendarWeekViewHourSegmentComponent } from './calendar-week-view/calendar-week-view-hour-segment/calendar-week-view-hour-segment.component';
 import { CalendarWeekViewCurrentTimeMarkerComponent } from './calendar-week-view/calendar-week-view-current-time-marker/calendar-week-view-current-time-marker.component';
 
@@ -28,12 +26,6 @@ export { CalendarWeekViewCurrentTimeMarkerComponent as ɵCalendarWeekViewCurrent
 
 @NgModule({
   imports: [
-    CommonModule,
-    ResizableModule,
-    DragAndDropModule,
-    CalendarCommonModule,
-  ],
-  declarations: [
     CalendarWeekViewComponent,
     CalendarWeekViewHeaderComponent,
     CalendarWeekViewEventComponent,

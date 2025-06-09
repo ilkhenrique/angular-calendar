@@ -1,8 +1,19 @@
 import { Component, Input, TemplateRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CalendarEvent, EventAction } from 'calendar-utils';
+import { ClickDirective } from '../click/click.directive';
+import { KeydownEnterDirective } from '../keydown-enter/keydown-enter.directive';
+import { CalendarA11yPipe } from '../calendar-a11y/calendar-a11y.pipe';
 
 @Component({
   selector: 'mwl-calendar-event-actions',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ClickDirective,
+    KeydownEnterDirective,
+    CalendarA11yPipe
+  ],
   template: `
     <ng-template
       #defaultTemplate

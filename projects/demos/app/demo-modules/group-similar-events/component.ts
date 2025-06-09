@@ -1,9 +1,13 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarEvent,
   CalendarMonthViewDay,
   CalendarView,
+  CalendarModule
 } from 'angular-calendar';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { DemoUtilsModule } from '../demo-utils/module';
 import { colors } from '../demo-utils/colors';
 import { isSameMinute, startOfDay } from 'date-fns';
 
@@ -26,6 +30,13 @@ interface EventGroupMeta {
       }
     `,
   ],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    NgbPopoverModule,
+    DemoUtilsModule
+  ]
 })
 export class DemoComponent implements OnInit {
   view: CalendarView = CalendarView.Month;

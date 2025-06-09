@@ -5,6 +5,7 @@ import {
   EventEmitter,
   TemplateRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   trigger,
   style,
@@ -15,6 +16,12 @@ import {
 } from '@angular/animations';
 import { CalendarEvent } from 'calendar-utils';
 import { isWithinThreshold, trackByEventId } from '../../../common/util/util';
+import { CalendarA11yPipe } from '../../../common/calendar-a11y/calendar-a11y.pipe';
+import { CalendarEventActionsComponent } from '../../../common/calendar-event-actions/calendar-event-actions.component';
+import { CalendarEventTitleComponent } from '../../../common/calendar-event-title/calendar-event-title.component';
+import { ClickDirective } from '../../../common/click/click.directive';
+import { KeydownEnterDirective } from '../../../common/keydown-enter/keydown-enter.directive';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 
 export const collapseAnimation: AnimationTriggerMetadata = trigger('collapse', [
   state(
@@ -41,6 +48,16 @@ export const collapseAnimation: AnimationTriggerMetadata = trigger('collapse', [
 
 @Component({
   selector: 'mwl-calendar-open-day-events',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarA11yPipe,
+    CalendarEventActionsComponent,
+    CalendarEventTitleComponent,
+    ClickDirective,
+    KeydownEnterDirective,
+    DragAndDropModule
+  ],
   template: `
     <ng-template
       #defaultTemplate

@@ -1,9 +1,13 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent,
   CalendarView,
+  CalendarModule
 } from 'angular-calendar';
+import { DragAndDropModule } from 'angular-draggable-droppable';
+import { DemoUtilsModule } from '../demo-utils/module';
 import { Subject } from 'rxjs';
 import { colors } from '../demo-utils/colors';
 
@@ -23,6 +27,13 @@ import { colors } from '../demo-utils/colors';
       }
     `,
   ],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DragAndDropModule,
+    DemoUtilsModule
+  ]
 })
 export class DemoComponent {
   CalendarView = CalendarView;

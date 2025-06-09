@@ -22,5 +22,6 @@ import '@angular/localize/init';
  * BROWSER POLYFILLS
  */
 
-import 'core-js/modules/es.object.entries';
+// Modern browsers don't need most polyfills anymore
+// Only zone.js is required for Angular
 import 'zone.js';

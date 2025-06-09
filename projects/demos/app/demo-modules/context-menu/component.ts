@@ -3,9 +3,12 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { CalendarEvent, CalendarView, CalendarModule } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { colors } from '../demo-utils/colors';
+import { CommonModule } from '@angular/common';
+import { DemoUtilsModule } from '../demo-utils/module';
+import { ContextMenuModule } from '@perfectmemory/ngx-contextmenu';
 
 @Component({
   selector: 'mwl-demo-component',
@@ -13,6 +16,13 @@ import { colors } from '../demo-utils/colors';
   templateUrl: 'template.html',
   styleUrls: ['./styles.scss'],
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule,
+    ContextMenuModule
+  ]
 })
 export class DemoComponent {
   view: CalendarView = CalendarView.Month;

@@ -21,8 +21,10 @@ export { CalendarMonthViewHeaderComponent as ɵCalendarMonthViewHeaderComponent 
 export { CalendarOpenDayEventsComponent as ɵCalendarOpenDayEventsComponent } from './calendar-month-view/calendar-open-day-events/calendar-open-day-events.component';
 
 @NgModule({
-  imports: [CommonModule, DragAndDropModule, CalendarCommonModule],
-  declarations: [
+  imports: [
+    CommonModule,
+    DragAndDropModule,
+    CalendarCommonModule,
     CalendarMonthViewComponent,
     CalendarMonthCellComponent,
     CalendarOpenDayEventsComponent,

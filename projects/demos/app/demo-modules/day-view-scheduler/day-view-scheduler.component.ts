@@ -11,11 +11,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarUtils,
   CalendarWeekViewComponent,
   DateAdapter,
   getWeekViewPeriod,
+  CalendarModule,
 } from 'angular-calendar';
 import {
   WeekView,
@@ -82,6 +84,8 @@ export class DayViewSchedulerCalendarUtils extends CalendarUtils {
   selector: 'mwl-day-view-scheduler',
   templateUrl: 'day-view-scheduler.component.html',
   providers: [DayViewSchedulerCalendarUtils],
+  standalone: true,
+  imports: [CommonModule, CalendarModule],
 })
 export class DayViewSchedulerComponent
   extends CalendarWeekViewComponent

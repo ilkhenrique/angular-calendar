@@ -1,23 +1,42 @@
+// Import the component and module files
+import * as component from './component';
+import * as moduleFile from './module';
+
+// Create a function to convert the imported module to a string
+function moduleToString(mod: any): string {
+  return mod.toString();
+}
+
+// HTML content as a string
+const templateHtml = `<mwl-calendar-week-view
+  precision="minutes"
+  [viewDate]="viewDate"
+  [events]="events"
+>
+</mwl-calendar-week-view>
+`;
+
+// Use static content for the sources
 export const sources = [
   {
     filename: 'component.ts',
     contents: {
-      raw: require('!!raw-loader!./component'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./component'),
+      raw: { default: moduleToString(component) },
+      highlighted: { default: moduleToString(component) },
     },
   },
   {
     filename: 'template.html',
     contents: {
-      raw: require('!!raw-loader!./template.html'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=xml!./template.html'),
+      raw: { default: templateHtml },
+      highlighted: { default: templateHtml },
     },
   },
   {
     filename: 'module.ts',
     contents: {
-      raw: require('!!raw-loader!./module'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./module'),
+      raw: { default: moduleToString(moduleFile) },
+      highlighted: { default: moduleToString(moduleFile) },
     },
   },
 ];

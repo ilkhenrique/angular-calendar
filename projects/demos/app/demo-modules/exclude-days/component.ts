@@ -3,7 +3,9 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
-import { CalendarEvent, CalendarView, DAYS_OF_WEEK } from 'angular-calendar';
+import { CommonModule } from '@angular/common';
+import { CalendarEvent, CalendarView, DAYS_OF_WEEK, CalendarModule } from 'angular-calendar';
+import { DemoUtilsModule } from '../demo-utils/module';
 import { colors } from '../demo-utils/colors';
 
 @Component({
@@ -11,6 +13,12 @@ import { colors } from '../demo-utils/colors';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ]
 })
 export class DemoComponent {
   view: CalendarView = CalendarView.Month;

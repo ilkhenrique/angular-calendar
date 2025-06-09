@@ -5,11 +5,22 @@ import {
   EventEmitter,
   TemplateRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CalendarEvent, WeekDay } from 'calendar-utils';
 import { trackByWeekDayHeaderDate } from '../../../common/util/util';
+import { CalendarDatePipe } from '../../../common/calendar-date/calendar-date.pipe';
+import { ClickDirective } from '../../../common/click/click.directive';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 
 @Component({
   selector: 'mwl-calendar-week-view-header',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarDatePipe,
+    ClickDirective,
+    DragAndDropModule
+  ],
   template: `
     <ng-template
       #defaultTemplate

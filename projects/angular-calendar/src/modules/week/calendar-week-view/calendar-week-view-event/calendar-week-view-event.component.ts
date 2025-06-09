@@ -5,15 +5,34 @@ import {
   EventEmitter,
   TemplateRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   WeekViewAllDayEvent,
   WeekViewTimeEvent,
   WeekViewHourColumn,
 } from 'calendar-utils';
 import { PlacementArray } from 'positioning';
+import { CalendarEventTitlePipe } from '../../../common/calendar-event-title/calendar-event-title.pipe';
+import { CalendarA11yPipe } from '../../../common/calendar-a11y/calendar-a11y.pipe';
+import { CalendarEventActionsComponent } from '../../../common/calendar-event-actions/calendar-event-actions.component';
+import { CalendarEventTitleComponent } from '../../../common/calendar-event-title/calendar-event-title.component';
+import { CalendarTooltipDirective } from '../../../common/calendar-tooltip/calendar-tooltip.directive';
+import { ClickDirective } from '../../../common/click/click.directive';
+import { KeydownEnterDirective } from '../../../common/keydown-enter/keydown-enter.directive';
 
 @Component({
   selector: 'mwl-calendar-week-view-event',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarEventTitlePipe,
+    CalendarA11yPipe,
+    CalendarEventActionsComponent,
+    CalendarEventTitleComponent,
+    CalendarTooltipDirective,
+    ClickDirective,
+    KeydownEnterDirective
+  ],
   template: `
     <ng-template
       #defaultTemplate

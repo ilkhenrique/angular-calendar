@@ -4,6 +4,9 @@ import {
   ViewChild,
   TemplateRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FlatpickrModule } from 'angularx-flatpickr';
 import {
   startOfDay,
   endOfDay,
@@ -15,12 +18,13 @@ import {
   addHours,
 } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
   CalendarView,
+  CalendarModule,
 } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
 
@@ -55,6 +59,14 @@ const colors: Record<string, EventColor> = {
     `,
   ],
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgbModalModule,
+    CalendarModule,
+    FlatpickrModule
+  ]
 })
 export class DemoComponent {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
@@ -169,7 +181,19 @@ export class DemoComponent {
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    try {
+      const modalRef = this.modal.open(this.modalContent, { size: 'lg' });
+      
+      // Add proper error handling for modal closing
+      modalRef.result.catch(error => {
+        // This is expected when modal is dismissed, so we don't log it as an error
+        if (error !== 'dismiss' && error !== 'backdrop click' && error !== 'escape key press') {
+          console.warn('Modal closed with error:', error);
+        }
+      });
+    } catch (error) {
+      console.warn('Error opening modal:', error);
+    }
   }
 
   addEvent(): void {

@@ -34,9 +34,8 @@ export function dayjsAdapterFactory() {
     ),
     DemoUtilsModule,
     RouterModule.forChild([{ path: '', component: DemoComponent }]),
+    DemoComponent
   ],
-  declarations: [DemoComponent],
-  exports: [DemoComponent],
   providers: [
     {
       provide: MOMENT,

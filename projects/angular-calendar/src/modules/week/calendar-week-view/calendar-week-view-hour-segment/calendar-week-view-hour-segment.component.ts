@@ -1,8 +1,21 @@
 import { Component, Input, TemplateRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { WeekViewHourSegment } from 'calendar-utils';
+import { CalendarA11yPipe } from '../../../common/calendar-a11y/calendar-a11y.pipe';
+import { CalendarDatePipe } from '../../../common/calendar-date/calendar-date.pipe';
+import { ClickDirective } from '../../../common/click/click.directive';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 
 @Component({
   selector: 'mwl-calendar-week-view-hour-segment',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarA11yPipe,
+    CalendarDatePipe,
+    ClickDirective,
+    DragAndDropModule
+  ],
   template: `
     <ng-template
       #defaultTemplate
@@ -61,4 +74,6 @@ export class CalendarWeekViewHourSegmentComponent {
   @Input() daysInWeek: number;
 
   @Input() customTemplate: TemplateRef<any>;
+  
+  @Input() clickListenerDisabled: boolean;
 }

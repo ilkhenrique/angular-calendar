@@ -32,12 +32,11 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/demos",
             "index": "projects/demos/index.html",
             "main": "projects/demos/main.ts",
-            "polyfills": "projects/demos/polyfills.ts",
             "tsConfig": "projects/demos/tsconfig.app.json",
             "assets": [
               "projects/demos/favicon.ico",
@@ -48,10 +47,10 @@
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "polyfills": ["zone.js"]
           },
           "configurations": {
             "production": {
@@ -79,12 +78,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "defaultConfiguration": "development",
           "options": {
-            "browserTarget": "demos:build"
+            "buildTarget": "demos:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demos:build:production"
+              "buildTarget": "demos:build:production"
+            },
+            "development": {
+              "buildTarget": "demos:build"
             }
           }
         },

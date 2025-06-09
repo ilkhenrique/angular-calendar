@@ -1,8 +1,17 @@
 import { Component, Input, TemplateRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CalendarEvent } from 'calendar-utils';
+import { CalendarEventTitlePipe } from './calendar-event-title.pipe';
+import { CalendarA11yPipe } from '../calendar-a11y/calendar-a11y.pipe';
 
 @Component({
   selector: 'mwl-calendar-event-title',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarEventTitlePipe,
+    CalendarA11yPipe
+  ],
   template: `
     <ng-template #defaultTemplate let-event="event" let-view="view">
       <span

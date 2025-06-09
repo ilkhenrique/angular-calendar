@@ -4,12 +4,17 @@ import {
   ElementRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'mwl-carbon-ad',
   templateUrl: './carbon-ad.component.html',
   styleUrls: ['./carbon-ad.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    CommonModule
+  ]
 })
 export class CarbonAdComponent implements AfterViewInit {
   constructor(private elementRef: ElementRef<HTMLElement>) {}

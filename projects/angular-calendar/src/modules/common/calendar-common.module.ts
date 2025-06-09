@@ -79,7 +79,8 @@ export {
  *
  */
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
     CalendarEventActionsComponent,
     CalendarEventTitleComponent,
     CalendarTooltipWindowComponent,
@@ -93,7 +94,6 @@ export {
     ClickDirective,
     KeydownEnterDirective,
   ],
-  imports: [CommonModule],
   exports: [
     CalendarEventActionsComponent,
     CalendarEventTitleComponent,

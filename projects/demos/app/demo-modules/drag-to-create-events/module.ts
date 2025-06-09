@@ -15,8 +15,7 @@ import { DemoUtilsModule } from '../demo-utils/module';
     }),
     DemoUtilsModule,
     RouterModule.forChild([{ path: '', component: DemoComponent }]),
-  ],
-  declarations: [DemoComponent],
-  exports: [DemoComponent],
+    DemoComponent
+  ]
 })
 export class DemoModule {}

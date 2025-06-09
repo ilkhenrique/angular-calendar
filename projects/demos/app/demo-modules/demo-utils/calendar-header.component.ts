@@ -1,8 +1,19 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CalendarView } from 'angular-calendar';
+import { CommonModule } from '@angular/common';
+import {
+  CalendarModule,
+  CalendarDateFormatter,
+  DateAdapter
+} from 'angular-calendar';
 
 @Component({
   selector: 'mwl-demo-utils-calendar-header',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule
+  ],
   template: `
     <div class="row text-center">
       <div class="col-md-4">

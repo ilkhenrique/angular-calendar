@@ -17,8 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     DemoUtilsModule,
     RouterModule.forChild([{ path: '', component: DemoComponent }]),
+    DemoComponent
   ],
-  declarations: [DemoComponent],
   exports: [DemoComponent],
 })
 export class DemoModule {}

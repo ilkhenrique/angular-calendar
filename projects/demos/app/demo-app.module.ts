@@ -18,7 +18,6 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { CarbonAdComponent } from './carbon-ad/carbon-ad.component';
 
 @NgModule({
-  declarations: [DemoAppComponent, CarbonAdComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -32,6 +31,8 @@ import { CarbonAdComponent } from './carbon-ad/carbon-ad.component';
     }),
     ClipboardModule,
     DefaultDemoModule,
+    DemoAppComponent,
+    CarbonAdComponent,
     RouterModule.forRoot(
       [
         {
@@ -494,9 +495,9 @@ import { CarbonAdComponent } from './carbon-ad/carbon-ad.component';
       ],
       {
         useHash: true,
+        bindToComponentInputs: true
       }
     ),
-  ],
-  bootstrap: [DemoAppComponent],
+  ]
 })
 export class DemoAppModule {}

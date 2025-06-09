@@ -1,10 +1,13 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarDateFormatter,
   CalendarEvent,
   CalendarView,
   DAYS_OF_WEEK,
+  CalendarModule
 } from 'angular-calendar';
+import { DemoUtilsModule } from '../demo-utils/module';
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 
 @Component({
@@ -17,6 +20,12 @@ import { CustomDateFormatter } from './custom-date-formatter.provider';
       useClass: CustomDateFormatter,
     },
   ],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ]
 })
 export class DemoComponent {
   view: CalendarView = CalendarView.Month;

@@ -1,11 +1,19 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { CalendarEvent, CalendarView, CalendarModule } from 'angular-calendar';
 import { colors } from '../demo-utils/colors';
+import { CommonModule } from '@angular/common';
+import { DemoUtilsModule } from '../demo-utils/module';
 
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ]
 })
 export class DemoComponent {
   view: CalendarView = CalendarView.Month;

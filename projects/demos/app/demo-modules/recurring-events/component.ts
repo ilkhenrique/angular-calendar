@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 // As an alternative to rrule there is also rSchedule
 // See https://github.com/mattlewis92/angular-calendar/issues/711#issuecomment-418537158 for more info
 import { RRule } from 'rrule';
@@ -13,9 +14,16 @@ import {
   CalendarMonthViewBeforeRenderEvent,
   CalendarView,
   CalendarWeekViewBeforeRenderEvent,
+  CalendarModule,
+  CalendarDateFormatter,
+  CalendarMomentDateFormatter,
+  DateAdapter,
+  MOMENT
 } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/moment';
 import { colors } from '../demo-utils/colors';
 import { ViewPeriod } from 'calendar-utils';
+import { DemoUtilsModule } from '../demo-utils/module';
 
 interface RecurringEvent {
   title: string;
@@ -32,10 +40,34 @@ interface RecurringEvent {
 // see https://github.com/mattlewis92/angular-calendar/issues/717 for more info
 moment.tz.setDefault('Utc');
 
+export function momentAdapterFactory() {
+  return adapterFactory(moment);
+}
+
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ],
+  providers: [
+    {
+      provide: DateAdapter,
+      useFactory: momentAdapterFactory
+    },
+    {
+      provide: MOMENT,
+      useValue: moment
+    },
+    {
+      provide: CalendarDateFormatter,
+      useClass: CalendarMomentDateFormatter
+    }
+  ],
 })
 export class DemoComponent {
   view: CalendarView = CalendarView.Month;

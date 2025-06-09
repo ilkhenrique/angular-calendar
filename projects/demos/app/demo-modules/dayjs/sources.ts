@@ -1,23 +1,65 @@
+// Import the component and module files
+import * as component from './component';
+import * as moduleFile from './module';
+
+// Create a function to convert the imported module to a string
+function moduleToString(mod: any): string {
+  return mod.toString();
+}
+
+// HTML content as a string
+const templateHtml = `<div class="alert alert-info">
+  Use this if you're already using dayjs heavily in your app and don't want to
+  include date-fns in your bundle, or you need to be able to adjust dates to be
+  in a different timezone than the users browser via dayjs-locale
+</div>
+
+<mwl-demo-utils-calendar-header [(view)]="view" [(viewDate)]="viewDate">
+</mwl-demo-utils-calendar-header>
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="'month'"
+    [viewDate]="viewDate"
+    [events]="events"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="'week'"
+    [viewDate]="viewDate"
+    [events]="events"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="'day'"
+    [viewDate]="viewDate"
+    [events]="events"
+  >
+  </mwl-calendar-day-view>
+</div>
+`;
+
+// Use static content for the sources
 export const sources = [
   {
     filename: 'component.ts',
     contents: {
-      raw: require('!!raw-loader!./component'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./component'),
+      raw: { default: moduleToString(component) },
+      highlighted: { default: moduleToString(component) },
     },
   },
   {
     filename: 'template.html',
     contents: {
-      raw: require('!!raw-loader!./template.html'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=xml!./template.html'),
+      raw: { default: templateHtml },
+      highlighted: { default: templateHtml },
     },
   },
   {
     filename: 'module.ts',
     contents: {
-      raw: require('!!raw-loader!./module'),
-      highlighted: require('!!raw-loader!highlightjs-loader?lang=typescript!./module'),
+      raw: { default: moduleToString(moduleFile) },
+      highlighted: { default: moduleToString(moduleFile) },
     },
   },
 ];

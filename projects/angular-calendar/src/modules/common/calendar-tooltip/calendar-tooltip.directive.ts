@@ -6,17 +6,16 @@ import {
   Input,
   ComponentRef,
   Injector,
-  ComponentFactoryResolver,
   ViewContainerRef,
   ElementRef,
-  ComponentFactory,
   Inject,
   Renderer2,
   TemplateRef,
   OnChanges,
   SimpleChanges,
+  createComponent,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, CommonModule } from '@angular/common';
 import { PlacementArray, positionElements } from 'positioning';
 import { CalendarEvent } from 'calendar-utils';
 import { Observable, of, Subject, timer } from 'rxjs';
@@ -24,6 +23,8 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'mwl-calendar-tooltip-window',
+  standalone: true,
+  imports: [CommonModule],
   template: `
     <ng-template
       #defaultTemplate
@@ -59,6 +60,7 @@ export class CalendarTooltipWindowComponent {
 
 @Directive({
   selector: '[mwlCalendarTooltip]',
+  standalone: true,
 })
 export class CalendarTooltipDirective implements OnDestroy, OnChanges {
   @Input('mwlCalendarTooltip') contents: string; // eslint-disable-line  @angular-eslint/no-input-rename
@@ -73,7 +75,6 @@ export class CalendarTooltipDirective implements OnDestroy, OnChanges {
 
   @Input('tooltipDelay') delay: number | null = null; // eslint-disable-line  @angular-eslint/no-input-rename
 
-  private tooltipFactory: ComponentFactory<CalendarTooltipWindowComponent>;
   private tooltipRef: ComponentRef<CalendarTooltipWindowComponent>;
   private cancelTooltipDelay$ = new Subject<void>();
 
@@ -81,14 +82,9 @@ export class CalendarTooltipDirective implements OnDestroy, OnChanges {
     private elementRef: ElementRef,
     private injector: Injector,
     private renderer: Renderer2,
-    componentFactoryResolver: ComponentFactoryResolver,
     private viewContainerRef: ViewContainerRef,
     @Inject(DOCUMENT) private document // eslint-disable-line
-  ) {
-    this.tooltipFactory = componentFactoryResolver.resolveComponentFactory(
-      CalendarTooltipWindowComponent
-    );
-  }
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (
@@ -126,18 +122,27 @@ export class CalendarTooltipDirective implements OnDestroy, OnChanges {
 
   private show(): void {
     if (!this.tooltipRef && this.contents) {
+      // Using createComponent directly is the Ivy-compatible approach
       this.tooltipRef = this.viewContainerRef.createComponent(
-        this.tooltipFactory,
-        0,
-        this.injector,
-        []
+        CalendarTooltipWindowComponent,
+        { 
+          index: 0,
+          injector: this.injector 
+        }
       );
+      
       this.tooltipRef.instance.contents = this.contents;
       this.tooltipRef.instance.customTemplate = this.customTemplate;
       this.tooltipRef.instance.event = this.event;
+      
       if (this.appendToBody) {
-        this.document.body.appendChild(this.tooltipRef.location.nativeElement);
+        // Use Renderer2 for DOM manipulation
+        this.renderer.appendChild(
+          this.document.body,
+          this.tooltipRef.location.nativeElement
+        );
       }
+      
       requestAnimationFrame(() => {
         this.positionTooltip();
       });
@@ -157,12 +162,18 @@ export class CalendarTooltipDirective implements OnDestroy, OnChanges {
   private positionTooltip(previousPositions: string[] = []): void {
     if (this.tooltipRef) {
       this.tooltipRef.changeDetectorRef.detectChanges();
+      
+      // Use ElementRef and Renderer2 for DOM access
+      const hostElement = this.elementRef.nativeElement;
+      const tooltipElement = this.tooltipRef.location.nativeElement.children[0];
+      
       this.tooltipRef.instance.placement = positionElements(
-        this.elementRef.nativeElement,
-        this.tooltipRef.location.nativeElement.children[0],
+        hostElement,
+        tooltipElement,
         this.placement,
         this.appendToBody
       );
+      
       // keep re-positioning the tooltip until the arrow position doesn't make a difference
       if (
         previousPositions.indexOf(this.tooltipRef.instance.placement) === -1

@@ -3,11 +3,14 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarEvent,
   CalendarMonthViewDay,
   CalendarView,
+  CalendarModule
 } from 'angular-calendar';
+import { DemoUtilsModule } from '../demo-utils/module';
 import {
   subMonths,
   addMonths,
@@ -75,6 +78,12 @@ function endOfPeriod(period: CalendarPeriod, date: Date): Date {
   ],
   // this is a hack to get styles to apply to the inner component. Your app should just use a global stylesheet
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ]
 })
 export class DemoComponent {
   view: CalendarView | CalendarPeriod = CalendarView.Month;

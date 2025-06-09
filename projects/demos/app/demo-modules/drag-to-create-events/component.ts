@@ -5,7 +5,9 @@ import {
   Injectable,
   ViewEncapsulation,
 } from '@angular/core';
-import { CalendarEvent, CalendarEventTitleFormatter } from 'angular-calendar';
+import { CommonModule } from '@angular/common';
+import { CalendarEvent, CalendarEventTitleFormatter, CalendarModule } from 'angular-calendar';
+import { DemoUtilsModule } from '../demo-utils/module';
 import { WeekViewHourSegment } from 'calendar-utils';
 import { fromEvent } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -38,6 +40,12 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    DemoUtilsModule
+  ],
   providers: [
     {
       provide: CalendarEventTitleFormatter,

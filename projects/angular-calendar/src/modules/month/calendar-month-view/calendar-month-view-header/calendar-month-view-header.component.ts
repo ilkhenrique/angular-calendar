@@ -5,11 +5,18 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { WeekDay } from 'calendar-utils';
 import { trackByWeekDayHeaderDate } from '../../../common/util/util';
+import { CalendarDatePipe } from '../../../common/calendar-date/calendar-date.pipe';
 
 @Component({
   selector: 'mwl-calendar-month-view-header',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarDatePipe
+  ],
   template: `
     <ng-template
       #defaultTemplate

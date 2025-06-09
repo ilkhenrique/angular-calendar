@@ -5,12 +5,31 @@ import {
   EventEmitter,
   TemplateRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MonthViewDay, CalendarEvent } from 'calendar-utils';
 import { isWithinThreshold, trackByEventId } from '../../../common/util/util';
 import { PlacementArray } from 'positioning';
+import { CalendarA11yPipe } from '../../../common/calendar-a11y/calendar-a11y.pipe';
+import { CalendarDatePipe } from '../../../common/calendar-date/calendar-date.pipe';
+import { CalendarEventTitlePipe } from '../../../common/calendar-event-title/calendar-event-title.pipe';
+import { CalendarTooltipDirective } from '../../../common/calendar-tooltip/calendar-tooltip.directive';
+import { ClickDirective } from '../../../common/click/click.directive';
+import { KeydownEnterDirective } from '../../../common/keydown-enter/keydown-enter.directive';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 
 @Component({
   selector: 'mwl-calendar-month-cell',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarA11yPipe,
+    CalendarDatePipe,
+    CalendarEventTitlePipe,
+    CalendarTooltipDirective,
+    ClickDirective,
+    KeydownEnterDirective,
+    DragAndDropModule
+  ],
   template: `
     <ng-template
       #defaultTemplate

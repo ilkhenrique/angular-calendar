@@ -6,10 +6,10 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
-
+import { DOCUMENT, CommonModule } from '@angular/common';
+import { CalendarEvent, CalendarView, CalendarModule } from 'angular-calendar';
+import { CalendarHeaderComponent } from '../demo-utils/calendar-header.component';
 import { colors } from '../demo-utils/colors';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'mwl-demo-component',
@@ -17,6 +17,12 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: 'template.html',
   styleUrls: ['styles.scss'],
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    CalendarHeaderComponent
+  ]
 })
 export class DemoComponent implements OnInit, OnDestroy {
   view: CalendarView = CalendarView.Month;

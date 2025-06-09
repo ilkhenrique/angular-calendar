@@ -16,6 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[mwlClick]',
+  standalone: true,
 })
 export class ClickDirective implements OnInit, OnDestroy {
   @Input() clickListenerDisabled = false;
@@ -47,9 +48,16 @@ export class ClickDirective implements OnInit, OnDestroy {
 
   private listen() {
     return new Observable<MouseEvent>((observer) => {
-      return this.renderer.listen(this.elm.nativeElement, 'click', (event) => {
-        observer.next(event);
-      });
+      // Using Renderer2 for DOM manipulation is the recommended approach in Ivy
+      const unlistenFn = this.renderer.listen(
+        this.elm.nativeElement, 
+        'click', 
+        (event: MouseEvent) => {
+          observer.next(event);
+        }
+      );
+      
+      return unlistenFn;
     });
   }
 }

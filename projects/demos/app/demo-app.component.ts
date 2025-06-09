@@ -1,11 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
 import { map, take, filter } from 'rxjs/operators';
 import StackBlitzSDK from '@stackblitz/sdk';
 import { Angulartics2GoogleGlobalSiteTag } from 'angulartics2';
 import { sources as demoUtilsSources } from './demo-modules/demo-utils/sources';
 import { Subject } from 'rxjs';
-import { NgbNav } from '@ng-bootstrap/ng-bootstrap/nav/nav';
+import { NgbNav, NgbNavModule, NgbCollapseModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DragAndDropModule } from 'angular-draggable-droppable';
+import { ClipboardModule } from 'ngx-clipboard';
+import { CarbonAdComponent } from './carbon-ad/carbon-ad.component';
 
 interface Source {
   filename: string;
@@ -60,34 +65,45 @@ function getSources(folder: string): Promise<Source[]> {
   );
 }
 
+// Hardcoded dependency versions to avoid dynamic requires
 const dependencyVersions: any = {
-  angular: require('@angular/core/package.json').version,
-  angularRouter: require('@angular/router/package.json').version,
-  angularCalendar: require('../../../package.json').version,
-  calendarUtils: require('calendar-utils/package.json').version,
-  angularResizableElement: require('angular-resizable-element/package.json')
-    .version,
-  angularDraggableDroppable: require('angular-draggable-droppable/package.json')
-    .version,
-  dateFns: require('date-fns/package.json').version,
-  rxjs: require('rxjs/package.json').version,
-  bootstrap: require('bootstrap/package.json').version,
-  zoneJs: require('zone.js/package.json').version,
-  ngBootstrap: require('@ng-bootstrap/ng-bootstrap/package.json').version,
-  rrule: require('rrule/package.json').version,
-  fontAwesome: require('@fortawesome/fontawesome-free/package.json').version,
-  positioning: require('positioning/package.json').version,
-  flatpickr: require('flatpickr/package.json').version,
-  angularxFlatpickr: require('angularx-flatpickr/package.json').version,
+  angular: '19.2.14',
+  angularRouter: '19.2.14',
+  angularCalendar: '0.31.1',
+  calendarUtils: '0.11.0',
+  angularResizableElement: '7.0.2',
+  angularDraggableDroppable: '8.0.0',
+  dateFns: '4.1.0',
+  rxjs: '7.8.2',
+  bootstrap: '5.3.6',
+  zoneJs: '0.15.0',
+  ngBootstrap: '18.0.0',
+  rrule: '2.8.1',
+  fontAwesome: '6.7.2',
+  positioning: '2.0.1',
+  flatpickr: '4.6.13',
+  angularxFlatpickr: '8.1.0',
 };
 
 @Component({
   selector: 'mwl-demo-app',
   styleUrls: ['./demo-app.css'],
   templateUrl: './demo-app.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgbNavModule,
+    NgbCollapseModule,
+    NgbTooltipModule,
+    DragAndDropModule,
+    ClipboardModule,
+    RouterModule,
+    CarbonAdComponent
+  ]
 })
 export class DemoAppComponent implements OnInit {
-  @ViewChild('nav') nav: NgbNav;
+  @ViewChild('nav', { static: false }) nav: NgbNav;
   demos: Demo[] = [];
   filteredDemos: Demo[] = [];
   activeDemo: Demo;
@@ -144,11 +160,22 @@ export class DemoAppComponent implements OnInit {
         });
       });
 
-    const script = document.createElement('script');
-    script.async = true;
-    script.setAttribute('data-uid', '7c1627e655');
-    script.src = 'https://angular-calendar.ck.page/7c1627e655/index.js';
-    document.getElementsByTagName('head')[0].appendChild(script);
+    // Load external script with error handling
+    try {
+      const script = document.createElement('script');
+      script.async = true;
+      script.setAttribute('data-uid', '7c1627e655');
+      script.src = 'https://angular-calendar.ck.page/7c1627e655/index.js';
+      
+      // Add error handling for script loading
+      script.onerror = (error) => {
+        console.warn('Failed to load external script:', error);
+      };
+      
+      document.getElementsByTagName('head')[0].appendChild(script);
+    } catch (error) {
+      console.warn('Error setting up external script:', error);
+    }
   }
 
   updateFilteredDemos() {
@@ -211,39 +238,46 @@ platformBrowserDynamic().bootstrapModule(BootstrapModule).then(ref => {
       files[`demo/${source.filename}`] = source.contents.raw;
     });
 
-    StackBlitzSDK.openProject(
-      {
-        title: 'Angular Calendar Demo',
-        description: demo.label,
-        template: 'angular-cli',
-        tags: ['angular-calendar'],
-        files,
-        dependencies: {
-          '@angular/core': dependencyVersions.angular,
-          '@angular/common': dependencyVersions.angular,
-          '@angular/compiler': dependencyVersions.angular,
-          '@angular/platform-browser': dependencyVersions.angular,
-          '@angular/platform-browser-dynamic': dependencyVersions.angular,
-          '@angular/router': dependencyVersions.angular,
-          '@angular/forms': dependencyVersions.angular,
-          '@angular/animations': dependencyVersions.angular,
-          rxjs: dependencyVersions.rxjs,
-          'zone.js': dependencyVersions.zoneJs,
-          'angular-draggable-droppable': `^${dependencyVersions.angularDraggableDroppable}`,
-          'angular-resizable-element': `^${dependencyVersions.angularResizableElement}`,
-          'date-fns': dependencyVersions.dateFns,
-          'angular-calendar': dependencyVersions.angularCalendar,
-          '@ng-bootstrap/ng-bootstrap': '5.0.0', // pinned due to issue with stackblitz generation
-          rrule: dependencyVersions.rrule,
-          'calendar-utils': dependencyVersions.calendarUtils,
-          flatpickr: dependencyVersions.flatpickr,
-          'angularx-flatpickr': dependencyVersions.angularxFlatpickr,
+    try {
+      // StackBlitzSDK.openProject returns void in this version, so we can't use .catch()
+      // The try/catch block is sufficient for error handling
+      StackBlitzSDK.openProject(
+        {
+          title: 'Angular Calendar Demo',
+          description: demo.label,
+          template: 'angular-cli',
+          tags: ['angular-calendar'],
+          files,
+          dependencies: {
+            '@angular/core': dependencyVersions.angular,
+            '@angular/common': dependencyVersions.angular,
+            '@angular/compiler': dependencyVersions.angular,
+            '@angular/platform-browser': dependencyVersions.angular,
+            '@angular/platform-browser-dynamic': dependencyVersions.angular,
+            '@angular/router': dependencyVersions.angular,
+            '@angular/forms': dependencyVersions.angular,
+            '@angular/animations': dependencyVersions.angular,
+            rxjs: dependencyVersions.rxjs,
+            'zone.js': dependencyVersions.zoneJs,
+            'angular-draggable-droppable': `^${dependencyVersions.angularDraggableDroppable}`,
+            'angular-resizable-element': `^${dependencyVersions.angularResizableElement}`,
+            'date-fns': dependencyVersions.dateFns,
+            'angular-calendar': dependencyVersions.angularCalendar,
+            '@ng-bootstrap/ng-bootstrap': '18.0.0', // updated for Angular 19
+            rrule: dependencyVersions.rrule,
+            'calendar-utils': dependencyVersions.calendarUtils,
+            flatpickr: dependencyVersions.flatpickr,
+            'angularx-flatpickr': dependencyVersions.angularxFlatpickr,
+          },
         },
-      },
-      {
-        openFile: 'demo/component.ts',
-      }
-    );
+        {
+          openFile: 'demo/component.ts',
+        }
+      );
+      // Error handling is done by the try/catch block around this call above
+    } catch (error) {
+      console.warn('Error setting up StackBlitz project:', error);
+    }
   }
 
   copied() {

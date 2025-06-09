@@ -10,8 +10,12 @@ export {
 } from './calendar-day-view/calendar-day-view.component';
 
 @NgModule({
-  imports: [CommonModule, CalendarCommonModule, CalendarWeekModule],
-  declarations: [CalendarDayViewComponent],
+  imports: [
+    CommonModule,
+    CalendarCommonModule,
+    CalendarWeekModule,
+    CalendarDayViewComponent
+  ],
   exports: [CalendarDayViewComponent],
 })
 export class CalendarDayModule {}

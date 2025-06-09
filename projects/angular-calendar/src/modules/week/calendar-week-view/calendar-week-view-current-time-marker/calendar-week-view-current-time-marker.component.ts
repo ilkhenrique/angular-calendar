@@ -6,12 +6,17 @@ import {
   SimpleChanges,
   TemplateRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BehaviorSubject, interval, Observable } from 'rxjs';
 import { switchMapTo, startWith, map, switchMap } from 'rxjs/operators';
 import { DateAdapter } from '../../../../date-adapters/date-adapter';
 
 @Component({
   selector: 'mwl-calendar-week-view-current-time-marker',
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   template: `
     <ng-template
       #defaultTemplate

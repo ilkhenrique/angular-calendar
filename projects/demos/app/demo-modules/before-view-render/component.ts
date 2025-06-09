@@ -3,13 +3,16 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarEvent,
   CalendarMonthViewBeforeRenderEvent,
   CalendarWeekViewBeforeRenderEvent,
   CalendarDayViewBeforeRenderEvent,
   CalendarView,
+  CalendarModule,
 } from 'angular-calendar';
+import { CalendarHeaderComponent } from '../demo-utils/calendar-header.component';
 
 @Component({
   selector: 'mwl-demo-component',
@@ -25,6 +28,12 @@ import {
       }
     `,
   ],
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    CalendarHeaderComponent
+  ]
 })
 export class DemoComponent {
   view: CalendarView = CalendarView.Month;

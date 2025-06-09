@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   CalendarEvent,
   CalendarViewPeriod,
@@ -10,13 +11,21 @@ import {
   CalendarWeekViewBeforeRenderEvent,
   CalendarDayViewBeforeRenderEvent,
   CalendarView,
+  CalendarModule
 } from 'angular-calendar';
 import { colors } from '../demo-utils/colors';
+import { CalendarHeaderComponent } from '../demo-utils/calendar-header.component';
 
 @Component({
   selector: 'mwl-demo-component',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: 'template.html',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarModule,
+    CalendarHeaderComponent
+  ]
 })
 export class DemoComponent {
   view: CalendarView = CalendarView.Month;

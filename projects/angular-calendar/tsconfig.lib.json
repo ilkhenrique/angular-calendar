@@ -3,15 +3,17 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
     "declarationMap": true,
-    "module": "es2015",
+    "module": "es2022",
+    "moduleResolution": "node",
     "declaration": true,
     "inlineSources": true,
     "types": [],
-    "lib": ["dom", "es2015"]
+    "lib": ["dom", "es2022"]
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
-    "strictMetadataEmit": true
+    "enableIvy": true,
+    "compilationMode": "partial"
   },
   "exclude": ["src/test/**/*.ts", "src/test-entry.ts", "**/*.spec.ts"]
 }

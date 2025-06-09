@@ -11,6 +11,14 @@ import {
   Inject,
   TemplateRef,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CalendarA11yPipe } from '../../common/calendar-a11y/calendar-a11y.pipe';
+import { ClickDirective } from '../../common/click/click.directive';
+import { KeydownEnterDirective } from '../../common/keydown-enter/keydown-enter.directive';
+import { CalendarMonthViewHeaderComponent } from './calendar-month-view-header/calendar-month-view-header.component';
+import { CalendarMonthCellComponent } from './calendar-month-cell/calendar-month-cell.component';
+import { CalendarOpenDayEventsComponent } from './calendar-open-day-events/calendar-open-day-events.component';
+import { DragAndDropModule } from 'angular-draggable-droppable';
 import {
   CalendarEvent,
   WeekDay,
@@ -53,6 +61,17 @@ export interface CalendarMonthViewEventTimesChangedEvent<
  */
 @Component({
   selector: 'mwl-calendar-month-view',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CalendarMonthViewHeaderComponent,
+    CalendarMonthCellComponent,
+    CalendarOpenDayEventsComponent,
+    CalendarA11yPipe,
+    ClickDirective,
+    KeydownEnterDirective,
+    DragAndDropModule
+  ],
   template: `
     <div class="cal-month-view" role="grid">
       <mwl-calendar-month-view-header
