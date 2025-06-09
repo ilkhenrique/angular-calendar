@@ -1,17 +1,6 @@
 <h1 align="center">angular 19.0+ calendar</h1>
 
-<div align="center">
-
-[![Sponsorship](https://img.shields.io/badge/funding-github-%23EA4AAA)](https://github.com/users/mattlewis92/sponsorship)
-[![Build Status](https://github.com/mattlewis92/angular-calendar/actions/workflows/ci.yml/badge.svg)](https://github.com/mattlewis92/angular-calendar/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/mattlewis92/angular-calendar/branch/main/graph/badge.svg)](https://codecov.io/gh/mattlewis92/angular-calendar)
-[![npm version](https://badge.fury.io/js/angular-calendar.svg)](http://badge.fury.io/js/angular-calendar)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Twitter Follow](https://img.shields.io/twitter/follow/mattlewis92_.svg)](https://twitter.com/mattlewis92_)
-
-</div>
-
-<h2 align="center">Demo</h2>
+<h2 align="center">Clone of  Matt Lewis Angular 15 Calendar Upgraded to Angular 19 </h2>
 
 <div align="center">
 
@@ -19,13 +8,21 @@ https://mattlewis92.github.io/angular-calendar/
 
 </div>
 
-<h2 align="center">Sponsors</h2>
+<h2 align="center">About</h2>
 
 <div align="center">
   
-<a href="https://clickup.com/careers/senior-frontend-engineer" target="_blank"><img src="https://i.imgur.com/0RWYhEB.jpg"></a>
+Changes:
 
-<a href="https://app.tea.xyz/sign-up?r=_uTUIw6W-Fr" target="_blank"><img src="https://i.imgur.com/dfbyhmW.png"></a>
+View Engine replaced with Ivy
+
+All libraries were updated to the latest versions
+
+Several code changes to bring the latest functionality and compatibility
+
+Check the documentation and other info in the original site:
+[https://github.com/mattlewis92/angular-calendar](https://github.com/mattlewis92/angular-calendar)
+
 
 </div>
 
