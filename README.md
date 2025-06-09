@@ -1,6 +1,10 @@
 <h1 align="center">angular 19.0+ calendar</h1>
 
-<h2 align="center"><br>Clone of  Matt Lewis Angular 15 Calendar Upgraded to Angular 19<br></h2>
+<h2 align="center">
+  <div>&nbsp</div>
+  Clone of  Matt Lewis Angular 15 Calendar Upgraded to Angular 19  
+  <div>&nbsp</div>
+</h2>
 
 <h2 align="center">Changes</h2>
 
