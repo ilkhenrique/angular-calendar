@@ -15,6 +15,6 @@ Several code changes to bring the latest functionality and compatibility
 Check the documentation and other info in the original site:
 </div>
 <div align="center">
-  <a href="https://github.com/mattlewis92/angular-calendar" target="_blank">Original Angular Calendar by Matt Lewis</a>
+  <a href="https://github.com/mattlewis92/angular-calendar">Original Angular Calendar by Matt Lewis</a>
 </div>
 
