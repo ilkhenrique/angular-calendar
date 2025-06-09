@@ -13,7 +13,8 @@ All libraries were updated to the latest versions
 Several code changes to bring the latest functionality and compatibility
 
 Check the documentation and other info in the original site:
+</div>
 <div align="center">
-  <a href="https://github.com/mattlewis92/angular-calendar" target="_blank" rel="noopener noreferrer">Original Angular Calendar by Matt Lewis</a>
+  <a href="https://github.com/mattlewis92/angular-calendar" target="_blank">Original Angular Calendar by Matt Lewis</a>
 </div>
-</div>
+
