@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2022",
+    "types": ["node"],
+    "paths": {
+      "eslint-scope": ["./node_modules/.pnpm/eslint-scope@8.3.0/node_modules/eslint-scope"],
+      "@types/eslint-scope": ["./node_modules/.pnpm/@types+eslint-scope@3.7.7/node_modules/@types/eslint-scope"],
+      "@types/estree": ["./node_modules/.pnpm/@types+estree@1.0.7/node_modules/@types/estree"]
+    },
+    "typeRoots": ["./node_modules/.pnpm/@types+node@22.15.29/node_modules/@types", "./node_modules/@types"]
+  },
+  "include": [
+    "projects/angular-calendar/schematics/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}

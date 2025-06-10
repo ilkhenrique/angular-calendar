@@ -14,7 +14,6 @@ import { CalendarDatePipe } from '../../../common/calendar-date/calendar-date.pi
 import { CalendarEventTitlePipe } from '../../../common/calendar-event-title/calendar-event-title.pipe';
 import { CalendarTooltipDirective } from '../../../common/calendar-tooltip/calendar-tooltip.directive';
 import { ClickDirective } from '../../../common/click/click.directive';
-import { KeydownEnterDirective } from '../../../common/keydown-enter/keydown-enter.directive';
 import { DragAndDropModule } from 'angular-draggable-droppable';
 
 @Component({
@@ -27,7 +26,6 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
     CalendarEventTitlePipe,
     CalendarTooltipDirective,
     ClickDirective,
-    KeydownEnterDirective,
     DragAndDropModule
   ],
   template: `

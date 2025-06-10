@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { WeekViewHourSegment } from 'calendar-utils';
 import { CalendarA11yPipe } from '../../../common/calendar-a11y/calendar-a11y.pipe';
 import { CalendarDatePipe } from '../../../common/calendar-date/calendar-date.pipe';
-import { ClickDirective } from '../../../common/click/click.directive';
 import { DragAndDropModule } from 'angular-draggable-droppable';
 
 @Component({
@@ -13,7 +12,6 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
     CommonModule,
     CalendarA11yPipe,
     CalendarDatePipe,
-    ClickDirective,
     DragAndDropModule
   ],
   template: `
