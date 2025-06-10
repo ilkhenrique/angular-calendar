@@ -184,7 +184,6 @@
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "esm2022": "./esm2022/angular-calendar.mjs",
       "esm": "./esm2022/angular-calendar.mjs",
       "default": "./fesm2022/angular-calendar.mjs",
       "node": {
@@ -194,7 +193,6 @@
     },
     "./date-adapters/date-adapter": {
       "types": "./date-adapters/index.d.ts",
-      "esm2022": "./date-adapters/esm/date-adapter.js",
       "esm": "./date-adapters/esm/date-adapter.js",
       "default": "./date-adapters/esm/date-adapter.js",
       "node": {
@@ -205,7 +203,6 @@
     },
     "./date-adapters/date-fns": {
       "types": "./date-adapters/date-fns/index.d.ts",
-      "esm2022": "./date-adapters/esm/date-fns/index.js",
       "esm": "./date-adapters/esm/date-fns/index.js",
       "default": "./date-adapters/esm/date-fns/index.js",
       "node": {
@@ -216,7 +213,6 @@
     },
     "./date-adapters/moment": {
       "types": "./date-adapters/moment/index.d.ts",
-      "esm2022": "./date-adapters/esm/moment/index.js",
       "esm": "./date-adapters/esm/moment/index.js",
       "default": "./date-adapters/esm/moment/index.js",
       "node": {
