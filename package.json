@@ -194,10 +194,8 @@
     },
     "./date-adapters/date-adapter": {
       "types": "./date-adapters/index.d.ts",
-      "es2020": "./date-adapters/esm/date-adapter.js",
-      "esm2020": "./date-adapters/esm/date-adapter.js",
-      "fesm2020": "./date-adapters/esm/date-adapter.js",
-      "fesm2015": "./date-adapters/esm/date-adapter.js",
+      "esm2022": "./date-adapters/esm/date-adapter.js",
+      "esm": "./date-adapters/esm/date-adapter.js",
       "default": "./date-adapters/esm/date-adapter.js",
       "node": {
         "require": "./date-adapters/index.js",
@@ -207,10 +205,8 @@
     },
     "./date-adapters/date-fns": {
       "types": "./date-adapters/date-fns/index.d.ts",
-      "es2020": "./date-adapters/esm/date-fns/index.js",
-      "esm2020": "./date-adapters/esm/date-fns/index.js",
-      "fesm2020": "./date-adapters/esm/date-fns/index.js",
-      "fesm2015": "./date-adapters/esm/date-fns/index.js",
+      "esm2022": "./date-adapters/esm/date-fns/index.js",
+      "esm": "./date-adapters/esm/date-fns/index.js",
       "default": "./date-adapters/esm/date-fns/index.js",
       "node": {
         "require": "./date-adapters/date-fns/index.js",
@@ -220,10 +216,8 @@
     },
     "./date-adapters/moment": {
       "types": "./date-adapters/moment/index.d.ts",
-      "es2020": "./date-adapters/esm/moment/index.js",
-      "esm2020": "./date-adapters/esm/moment/index.js",
-      "fesm2020": "./date-adapters/esm/moment/index.js",
-      "fesm2015": "./date-adapters/esm/moment/index.js",
+      "esm2022": "./date-adapters/esm/moment/index.js",
+      "esm": "./date-adapters/esm/moment/index.js",
       "default": "./date-adapters/esm/moment/index.js",
       "node": {
         "require": "./date-adapters/moment/index.js",
@@ -236,7 +230,7 @@
     }
   },
   "peerDependencies": {
-    "@angular/core": ">=19.0.0"
+    "@angular/core": ">=19.0.0",
     "@angular/common": ">=19.0.0",
     "@angular/animations": ">=19.0.0"
   }
