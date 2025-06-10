@@ -10,7 +10,7 @@
     "baseUrl": "",
     "inlineSources": true,
     "importHelpers": true,
-    "target": "es5"
+    "target": "ES2022"
   },
   "files": [
     "projects/angular-calendar/src/date-adapters/date-fns/index.ts",

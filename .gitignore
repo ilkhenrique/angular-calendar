@@ -34,8 +34,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-projects/angular-calendar/package.json
-projects/angular-calendar/schematics/ng-add/package.json
+# Ignore npm lock file as pnpm is used
+package-lock.json
 
 # System Files
 .DS_Store
