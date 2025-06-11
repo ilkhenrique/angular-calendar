@@ -18,15 +18,14 @@ export async function createTestApp(
     collectionPath
   );
   const workspace = await runner
-    .runExternalSchematicAsync(SCHEMATICS_PACKAGE_NAME, 'workspace', {
+    .runExternalSchematic(SCHEMATICS_PACKAGE_NAME, 'workspace', {
       name: 'workspace',
       version: '9.0.0',
       newProjectRoot: 'projects',
-    })
-    .toPromise();
+    })   
 
   return runner
-    .runExternalSchematicAsync(
+    .runExternalSchematic(
       SCHEMATICS_PACKAGE_NAME,
       'application',
       {
@@ -34,6 +33,5 @@ export async function createTestApp(
         ...appOptions,
       },
       workspace
-    )
-    .toPromise();
+    )    
 }
