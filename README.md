@@ -1,4 +1,4 @@
-<h1 align="center">angular 19.0+ calendar</h1>
+<h1 align="center">angular 19+ calendar</h1>
 
 <h3 align="center">
   <div>&nbsp</div>
