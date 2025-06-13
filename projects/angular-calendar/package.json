@@ -188,7 +188,14 @@
       "node": {
         "require": "./index.js",
         "import": "./fesm2022/angular-calendar.mjs"
-      }
+      },
+      "default": "./fesm2022/angular-calendar.mjs",
+      "browser": "./fesm2022/angular-calendar.mjs",
+      "es2015": "./fesm2022/angular-calendar.mjs",
+      "es2020": "./fesm2022/angular-calendar.mjs",
+      "import": "./fesm2022/angular-calendar.mjs",
+      "module": "./fesm2022/angular-calendar.mjs",
+      "production": "./fesm2022/angular-calendar.mjs"
     },
     "./date-adapters/date-adapter": {
       "esm": "./date-adapters/esm/date-adapter.js",
@@ -196,7 +203,14 @@
         "require": "./date-adapters/index.js",
         "import": "./date-adapters/esm/date-adapter.js"
       },
-      "main": "./date-adapters/index.js"
+      "main": "./date-adapters/index.js",
+      "default": "./date-adapters/esm/date-adapter.js",
+      "browser": "./date-adapters/esm/date-adapter.js",
+      "es2015": "./date-adapters/esm/date-adapter.js",
+      "es2020": "./date-adapters/esm/date-adapter.js",
+      "import": "./date-adapters/esm/date-adapter.js",
+      "module": "./date-adapters/esm/date-adapter.js",
+      "production": "./date-adapters/esm/date-adapter.js"
     },
     "./date-adapters/date-fns": {
       "esm": "./date-adapters/esm/date-fns/index.js",
@@ -204,7 +218,14 @@
         "require": "./date-adapters/date-fns/index.js",
         "import": "./date-adapters/esm/date-fns/index.js"
       },
-      "main": "./date-adapters/date-fns/index.js"
+      "main": "./date-adapters/date-fns/index.js",
+      "default": "./date-adapters/esm/date-fns/index.js",
+      "browser": "./date-adapters/esm/date-fns/index.js",
+      "es2015": "./date-adapters/esm/date-fns/index.js",
+      "es2020": "./date-adapters/esm/date-fns/index.js",
+      "import": "./date-adapters/esm/date-fns/index.js",
+      "module": "./date-adapters/esm/date-fns/index.js",
+      "production": "./date-adapters/esm/date-fns/index.js"
     },
     "./date-adapters/moment": {
       "esm": "./date-adapters/esm/moment/index.js",
@@ -212,7 +233,14 @@
         "require": "./date-adapters/moment/index.js",
         "import": "./date-adapters/esm/moment/index.js"
       },
-      "main": "./date-adapters/moment/index.js"
+      "main": "./date-adapters/moment/index.js",
+      "default": "./date-adapters/esm/moment/index.js",
+      "browser": "./date-adapters/esm/moment/index.js",
+      "es2015": "./date-adapters/esm/moment/index.js",
+      "es2020": "./date-adapters/esm/moment/index.js",
+      "import": "./date-adapters/esm/moment/index.js",
+      "module": "./date-adapters/esm/moment/index.js",
+      "production": "./date-adapters/esm/moment/index.js"
     },
     "./scss/*": {
       "sass": "./scss/*"
